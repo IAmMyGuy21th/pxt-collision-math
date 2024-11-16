@@ -8,7 +8,7 @@
  * Custom blocks
  */
 //% weight=100 color=#ff5500 icon=""
-namespace collisions {
+namespace collisionTests {
     /**
      * TODO: Distance between two points
      * @param x0 Point 1 X
@@ -52,7 +52,7 @@ namespace collisions {
      * @param r Circle Radius
      */
     //% block="Check line to circle collision line start $lx0 $ly0 end $lx1 $ly1 circle position $px $py radius $r"
-    export function circlePoint(lx0: number, ly0: number, lx1: number, ly1: number, cx: number, cy: number, r: number) {
+    export function circleLine(lx0: number, ly0: number, lx1: number, ly1: number, cx: number, cy: number, r: number) {
         let inside1 = pointCircle(lx0, ly0, cx, cy, r);
         let inside2 = pointCircle(lx1, ly1, cx, cy, r);
         if (inside1 || inside2) {return true}
