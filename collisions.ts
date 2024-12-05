@@ -10,13 +10,13 @@
 //% weight=100 color=#ff5500 icon=""
 namespace collisionTests {
     /**
-     * TODO: Distance between two points
+     * Distance between two points
      * @param x0 Point 1 X
      * @param y0 Point 1 Y
      * @param x1 Point 2 X
      * @param y1 Point 2 Y
      */
-    //% block="Distance between point $x0 $y0 and point $x1 $y1"
+    //% block="distance between point $x0 $y0 and point $x1 $y1"
     export function dist(x0: number, y0: number, x1: number, y1: number) {
         let distX = x1 - x0
         let distY = y1 - y0
@@ -24,7 +24,7 @@ namespace collisionTests {
     }
 
     /**
-     * TODO: Boolean - Checks for point to line collision
+     * Boolean - Checks for point to line collision
      * @param lx0 First Line Point X
      * @param ly0 First Line Point Y
      * @param lx1 Second Line Point X
@@ -32,7 +32,7 @@ namespace collisionTests {
      * @param px Collision Point X
      * @param py Collision Point Y
      */
-    //% block="Check line to point collision line start $lx0 $ly0 end $lx1 $ly1 point $px $py"
+    //% block="line to point collision line start $lx0 $ly0 end $lx1 $ly1 point $px $py"
     export function linePoint(lx0: number, ly0: number, lx1: number, ly1: number, px: number, py: number) {
         let lineLen = dist(lx0, ly0, lx1, ly1)
         let d1 = dist(px, py, lx0, ly0)
@@ -42,7 +42,7 @@ namespace collisionTests {
     }
 
     /**
-     * TODO: Boolean - Checks for circle to line collision
+     * Boolean - Checks for circle to line collision
      * @param lx0 First Line Point X
      * @param ly0 First Line Point Y
      * @param lx1 Second Line Point X
@@ -51,7 +51,7 @@ namespace collisionTests {
      * @param cy Circle Y
      * @param r Circle Radius
      */
-    //% block="Check line to circle collision line start $lx0 $ly0 end $lx1 $ly1 circle position $px $py radius $r"
+    //% block="line to circle collision line start $lx0 $ly0 end $lx1 $ly1 circle position $px $py radius $r"
     export function circleLine(lx0: number, ly0: number, lx1: number, ly1: number, cx: number, cy: number, r: number) {
         let inside1 = pointCircle(lx0, ly0, cx, cy, r);
         let inside2 = pointCircle(lx1, ly1, cx, cy, r);
@@ -70,15 +70,47 @@ namespace collisionTests {
     }
 
     /**
-     * TODO: Boolean - Checks for point to circle collision
+     * Boolean - Checks for point to circle collision
      * @param px Point X
      * @param py Point Y
      * @param cx Circle X
      * @param cy Circle Y
      * @param r Radius
      */
-    //% block="Check circle to point collision point position $px $py circle position $cx $cy radius $r"
+    //% block="circle to point collision point position $px $py circle position $cx $cy radius $r"
     export function pointCircle(px: number, py: number, cx: number, cy: number, r: number) {
         return dist(px,py,cx,cy) < r
+    }
+
+    /**
+     * Boolean - Checks for circle to circle collision
+     * @param c0x Circle 1 X
+     * @param c0y Circle 1 Y
+     * @param c1x Circle 2 X
+     * @param c1y Circle 2 Y
+     * @param c0r Circle 1 Radius
+     * @param c1r Circle 2 Radius
+     */
+    //% block="circle to circle collision circle 1 pos $c0x $c0y 2 pos $c1x $c1y radius 1 $c0r 2 $c1r"
+    export function circleCircle(c0x: number, c0y: number, c1x: number, c1y: number, c0r: number, c1r: number) {
+        return dist(c0x, c0y, c1x, c1y) < (c0r + c1r)
+    }
+
+    /**
+     * Boolean - Checks point to rectangle collision. Rectange start coord should be less than Rect end coords.
+     * @param px Point X
+     * @param py Point Y
+     * @param rx0 Rect Start X
+     * @param ry0 Rect Start Y
+     * @param rx1 Rect End X
+     * @param ry1 Rect End Y
+     */
+    //% block="rect to poit collision point $px $py rect start $rx0 $ry0 end $rx1 $ry1"
+    export function pointRect(px: number, py: number, rx0: number, ry0: number, rx1: number, ry1: number) {
+        let inRight = px > rx0
+        let inLeft = px < rx1
+        let inTop = py > ry0
+        let inBottom = py > ry1
+        return (inRight && inLeft && inTop && inBottom)
     }
 }
