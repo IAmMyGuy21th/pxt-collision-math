@@ -2,7 +2,8 @@
     "name": "collision",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "Vector2": "github:iammyguy21th/pxt-vector2#e0704fd5409faef5ef90fce9a5d902556d11d312"
     },
     "files": [
         "main.blocks",
